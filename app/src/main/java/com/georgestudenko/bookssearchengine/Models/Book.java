@@ -12,13 +12,12 @@ public class Book {
     private String mThumbnail;
     private String mPages;
     private String mBuyLink;
-    private String mLanguage;
     private String mPreviewLink;
     private String mInfoLink;
     private String mCurrency;
     private String mRetailPrice;
 
-    public Book(String title, String subTitle, String author, String shortDesc, String thumbnail, String pages, String buyLink, String language, String previewLink, String infoLink, String currency, String retailPrice) {
+    public Book(String title, String subTitle, String author, String shortDesc, String thumbnail, String pages, String buyLink, String previewLink, String infoLink, String currency, String retailPrice) {
         mTitle = title;
         mSubTitle = subTitle;
         mAuthor = author;
@@ -26,7 +25,6 @@ public class Book {
         mThumbnail = thumbnail;
         mPages = pages;
         mBuyLink = buyLink;
-        mLanguage = language;
         mPreviewLink = previewLink;
         mInfoLink = infoLink;
         mCurrency = currency;
@@ -59,10 +57,6 @@ public class Book {
 
     public String getBuyLink() {
         return mBuyLink;
-    }
-
-    public String getLanguage() {
-        return mLanguage;
     }
 
     public String getPreviewLink() {
