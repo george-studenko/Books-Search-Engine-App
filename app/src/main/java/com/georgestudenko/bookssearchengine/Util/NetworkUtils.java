@@ -27,6 +27,26 @@ public class NetworkUtils {
     private final static String maxResults="maxResults";
     private final static String maxResultsValue="40";
 
+
+    public static String getResponseFromHttpUrl(URL url) throws IOException {
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        try {
+            InputStream in = urlConnection.getInputStream();
+
+            Scanner scanner = new Scanner(in);
+            scanner.useDelimiter("\\A");
+
+            boolean hasInput = scanner.hasNext();
+            if (hasInput) {
+                return scanner.next();
+            } else {
+                return null;
+            }
+        } finally {
+            urlConnection.disconnect();
+        }
+    }
+
     public static URL buildUrl(String searchTerm){
         URL URL= null;
         Uri.Builder builder= new Uri.Builder();
