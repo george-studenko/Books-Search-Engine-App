@@ -1,6 +1,7 @@
 package com.georgestudenko.bookssearchengine.Data;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -25,9 +26,11 @@ import java.util.List;
 
 public class BookAdapter extends ArrayAdapter<Book> {
     List<Book> mData;
+    Context mContext;
 
     public BookAdapter(@NonNull Context context, @NonNull List<Book> books) {
         super(context, 0, books);
+        mContext = context;
         mData = books;
     }
 
@@ -38,7 +41,7 @@ public class BookAdapter extends ArrayAdapter<Book> {
         if(currentView == null){
             currentView = LayoutInflater.from(getContext()).inflate(R.layout.book_item,parent,false);
         }
-        Book currentBook = mData.get(position);
+        final Book currentBook = mData.get(position);
         TextView title = (TextView) currentView.findViewById(R.id.title);
         TextView authors = (TextView) currentView.findViewById(R.id.authors);
         TextView shortDescription = (TextView) currentView.findViewById(R.id.shortDescription);
@@ -65,6 +68,21 @@ public class BookAdapter extends ArrayAdapter<Book> {
         }
         if(currentBook.getThumbnail().length()>0) {
             Picasso.with(getContext()).load(Uri.parse(currentBook.getThumbnail())).into(thumbnail);
+        }
+
+        if(currentBook.getRetailPrice()!=null){
+            buy.setVisibility(View.VISIBLE);
+            buy.setText("Buy "+currentBook.getRetailPrice()+" "+ currentBook.getCurrency());
+
+            buy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(currentBook.getBuyLink()));
+                    mContext.startActivity(intent);
+                }
+            });
+        }else  {
+            buy.setVisibility(View.GONE);
         }
 
         return currentView;
