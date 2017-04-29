@@ -25,7 +25,7 @@
 
         <Button
             android:layout_marginTop="3dp"
-            android:id="@+id/price"
+            android:id="@+id/buyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
@@ -42,6 +42,7 @@
         android:paddingRight="5dp">
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -50,6 +51,7 @@
             tools:text="Android Cookbook: Problems and Solutions for Android Developers"/>
 
         <TextView
+            android:id="@+id/shortDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
@@ -57,7 +59,7 @@
             tools:text="Ideal for developers familiar with Java, Android basics, and the Java SE API, this book features recipes contributed by more than three dozen developers from the Android community."/>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/pages"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"
@@ -71,6 +73,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/downloadSample"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
@@ -80,6 +83,7 @@
                 android:textColor="@android:color/white"/>
 
             <Button
+                android:id="@+id/openDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
