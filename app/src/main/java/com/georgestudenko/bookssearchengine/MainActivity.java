@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.georgestudenko.bookssearchengine.Data.BookAdapter;
 import com.georgestudenko.bookssearchengine.Data.BookAsyncTaskLoader;
 import com.georgestudenko.bookssearchengine.Models.Book;
+import com.georgestudenko.bookssearchengine.Util.NetworkUtils;
 
 import java.util.List;
 
@@ -20,15 +21,29 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private static final int LOADER_ID = 182;
     EditText mSearchTerm;
+    BookAdapter mAdapter;
+    ListView mListView;
+    TextView mMessageText;
     Button mSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mSearchTerm = (EditText) findViewById(R.id.searchText);
         mMessageText = (TextView) findViewById(R.id.messageText);
         mSearch = (Button) findViewById(R.id.searchButton);
+        if(!NetworkUtils.isConnected(this)){
+            mMessageText.setText("No internet connection, please check your connection and try again");
+            mSearch.setEnabled(false);
+        }else{
+            mSearch.setEnabled(true);
+            mMessageText.setText("Please make a search to show a list of books!");
+        }
+
+        mSearchTerm = (EditText) findViewById(R.id.searchText);
+
+    }
+
     public void searchBooks(View v){
             Bundle bundle = new Bundle();
             bundle.putString("searchTerm", mSearchTerm.getText().toString());
