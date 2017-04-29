@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onLoaderReset(Loader<List<Book>> loader) {
-
+            mAdapter = null;
+             mListView.setAdapter(mAdapter);
     }
 }
