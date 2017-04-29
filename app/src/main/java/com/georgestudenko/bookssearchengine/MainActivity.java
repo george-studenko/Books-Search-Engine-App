@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         mSearchTerm = (EditText) findViewById(R.id.searchText);
 
+        mListView = (ListView) findViewById(R.id.booksListView);
+        mListView.setEmptyView(mMessageText);
     }
 
     public void searchBooks(View v){
