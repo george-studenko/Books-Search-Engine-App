@@ -47,6 +47,15 @@ public class NetworkUtils {
         }
     }
 
+    public static boolean isConnected(Context context) {
+        ConnectivityManager
+                cm = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null
+                && activeNetwork.isConnectedOrConnecting();
+    }
+
     public static URL buildUrl(String searchTerm){
         URL URL= null;
         Uri.Builder builder= new Uri.Builder();
