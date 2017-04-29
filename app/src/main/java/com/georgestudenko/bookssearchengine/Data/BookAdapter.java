@@ -31,4 +31,42 @@ public class BookAdapter extends ArrayAdapter<Book> {
         mData = books;
     }
 
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View currentView = convertView;
+        if(currentView == null){
+            currentView = LayoutInflater.from(getContext()).inflate(R.layout.book_item,parent,false);
+        }
+        Book currentBook = mData.get(position);
+        TextView title = (TextView) currentView.findViewById(R.id.title);
+        TextView authors = (TextView) currentView.findViewById(R.id.authors);
+        TextView shortDescription = (TextView) currentView.findViewById(R.id.shortDescription);
+        TextView pages = (TextView) currentView.findViewById(R.id.pages);
+        Button buy = (Button) currentView.findViewById(R.id.buyButton);
+        Button moreInfo = (Button) currentView.findViewById(R.id.openDetails);
+        Button getSample = (Button) currentView.findViewById(R.id.downloadSample);
+        ImageView thumbnail = (ImageView) currentView.findViewById(R.id.bookThumbnail);
+
+        title.setText(currentBook.getTitle() + (currentBook.getSubTitle().length()>0 ? ": "+currentBook.getSubTitle() : ""));
+        authors.setText(currentBook.getAuthor());
+
+        if(currentBook.getShortDesc().length() > 0) {
+            shortDescription.setText(currentBook.getShortDesc());
+        }
+        else {
+            shortDescription.setVisibility(View.GONE);
+        }
+
+        if(currentBook.getPages().length()>0) {
+            pages.setText(currentBook.getPages() + " pages");
+        }else{
+            pages.setVisibility(View.GONE);
+        }
+        if(currentBook.getThumbnail().length()>0) {
+            Picasso.with(getContext()).load(Uri.parse(currentBook.getThumbnail())).into(thumbnail);
+        }
+
+        return currentView;
+    }
 }
