@@ -36,16 +36,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mShowError = false;
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mMessageText = (TextView) findViewById(R.id.messageText);
         mSearch = (Button) findViewById(R.id.searchButton);
+
+        checkInternetConnection();
+
+    private void checkInternetConnection() {
         if(!NetworkUtils.isConnected(this)){
-            mMessageText.setText("No internet connection, please check your connection and try again");
+            clearAdapter();
+            setErrorMessage(getString(R.string.no_internet),false);
             mSearch.setEnabled(false);
         }else{
             mSearch.setEnabled(true);
-            mMessageText.setText("Please make a search to show a list of books!");
+            mMessageText.setText(R.string.make_a_seach);
         }
+    }
 
         mSearchTerm = (EditText) findViewById(R.id.searchText);
 
