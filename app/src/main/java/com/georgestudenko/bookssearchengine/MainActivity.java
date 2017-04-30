@@ -36,12 +36,20 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mLastSearch = "";
         mShowError = false;
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mMessageText = (TextView) findViewById(R.id.messageText);
         mSearch = (Button) findViewById(R.id.searchButton);
 
         checkInternetConnection();
+
+        mSearchTerm = (EditText) findViewById(R.id.searchText);
+
+        mListView = (ListView) findViewById(R.id.booksListView);
+        mListView.setEmptyView(mMessageText);
+    }
+
 
     private void checkInternetConnection() {
         if(!NetworkUtils.isConnected(this)){
@@ -54,10 +62,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
     }
 
-        mSearchTerm = (EditText) findViewById(R.id.searchText);
-
-        mListView = (ListView) findViewById(R.id.booksListView);
-        mListView.setEmptyView(mMessageText);
     private void clearAdapter() {
         if(mAdapter!=null) {
             mAdapter.clear();
@@ -66,9 +70,22 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     public void searchBooks(View v){
+        String searchTerm = mSearchTerm.getText().toString();
+        if(searchTerm.length()==0){
+            clearAdapter();
+            setErrorMessage(getString(R.string.one_word_min),false);
+            return;
+        }
+        if(!searchTerm.equals(mLastSearch)) {
+            mLastSearch = searchTerm;
+            clearAdapter();
+            checkInternetConnection();
             Bundle bundle = new Bundle();
-            bundle.putString("searchTerm", mSearchTerm.getText().toString());
-            getSupportLoaderManager().restartLoader(LOADER_ID,bundle,this);
+            bundle.putString("searchTerm", searchTerm);
+            getSupportLoaderManager().restartLoader(LOADER_ID, bundle, this);
+        }
+    }
+
     public static void setErrorMessage(String errorMessageToSet, boolean showErrorOnLoadFinish) {
         errorMessage = errorMessageToSet;
         if(showErrorOnLoadFinish){
