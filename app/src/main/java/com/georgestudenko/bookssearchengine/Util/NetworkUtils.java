@@ -26,6 +26,7 @@ public class NetworkUtils {
     private final static String query="q";
     private final static String maxResults="maxResults";
     private final static String maxResultsValue="40";
+    private final static String apiKey = BuildConfig.API_KEY.length()>0 ? BuildConfig.API_KEY : "";
 
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
@@ -65,8 +66,13 @@ public class NetworkUtils {
                 .appendPath(apiVersion)
                 .appendPath(concept)
                 .appendQueryParameter(query, searchTerm)
-                .appendQueryParameter(maxResults,maxResultsValue)
-                .build();
+                .appendQueryParameter(maxResults,maxResultsValue);
+
+                if(apiKey!=""){
+                    builder.appendQueryParameter("key", apiKey);
+                }
+
+                builder.build();
         try {
             URL = new URL(builder.build().toString());
         }catch (MalformedURLException ex){

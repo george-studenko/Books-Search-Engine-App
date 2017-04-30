@@ -18,6 +18,9 @@ android {
         }
     }
 
+    buildTypes.each {
+        it.buildConfigField 'String', 'API_KEY', googleAPIKey
+    }
 }
 
 dependencies {
