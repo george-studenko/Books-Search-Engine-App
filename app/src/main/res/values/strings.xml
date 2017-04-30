@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Books Search Engine</string>
+    <string name="e204">No Content Available. Please search for another keyword</string>
+    <string name="e400">Error 400: Bad request</string>
+    <string name="e401">Error 401: Unauthorized</string>
+    <string name="e403">Error 403: Forbidden</string>
+    <string name="e404">Error 404: Not Found</string>
+    <string name="e408">Error 408: Request Timeout</string>
+    <string name="e409">Error 409: Conflict</string>
+    <string name="e429">Error 429: Too Many Requests</string>
+    <string name="e444">Error 444: No Response</string>
+    <string name="e500">Error 500: Internal Server Error</string>
+    <string name="e502">Error 502: Bad Gateway</string>
+    <string name="e503">Error 503: Service Unavailable</string>
+    <string name="e504">Error 504: Gateway Timeout</string>
+    <string name="description_not_available">Description not available</string>
+    <string name="buy">\"Buy \"</string>
+    <string name="pages">\" pages\"</string>
+    <string name="one_word_min">Please enter at least one keyword to make a search</string>
+    <string name="make_a_seach">Please make a search to show a list of books!</string>
+    <string name="no_internet">No internet connection, please check your connection and try again</string>
 </resources>
