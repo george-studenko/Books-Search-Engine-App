@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         checkInternetConnection();
     }
 
+    @Override
     public Loader<List<Book>> onCreateLoader(int id, Bundle args) {
         mMessageText.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
@@ -100,6 +101,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(Loader<List<Book>> loader, List<Book> data) {
         mMessageText.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
+
+        if(data !=null) {
+            mAdapter = new BookAdapter(this, data);
+            mListView.setAdapter(mAdapter);
+        }
+        if(mShowError){
+            mMessageText.setText(errorMessage);
+            mSearch.setEnabled(false);
+            mShowError=false;
+        }
     }
 
     @Override
