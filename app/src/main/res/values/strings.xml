@@ -19,4 +19,6 @@
     <string name="one_word_min">Please enter at least one keyword to make a search</string>
     <string name="make_a_seach">Please make a search to show a list of books!</string>
     <string name="no_internet">No internet connection, please check your connection and try again</string>
+    <string name="search_books">Search Books</string>
+    <string name="search">Search</string>
 </resources>
