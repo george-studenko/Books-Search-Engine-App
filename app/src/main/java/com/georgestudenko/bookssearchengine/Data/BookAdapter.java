@@ -85,6 +85,35 @@ public class BookAdapter extends ArrayAdapter<Book> {
             buy.setVisibility(View.GONE);
         }
 
+        if(currentBook.getInfoLink()!=null){
+            moreInfo.setVisibility(View.VISIBLE);
+
+            moreInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(currentBook.getInfoLink()));
+                    mContext.startActivity(intent);
+                }
+            });
+        }else  {
+            moreInfo.setVisibility(View.GONE);
+        }
+
+        if(currentBook.getRetailPrice()!=null){
+            getSample.setVisibility(View.VISIBLE);
+
+            getSample.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String previewLink = currentBook.getPreviewLink();
+                    Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(previewLink));
+                    mContext.startActivity(intent);
+                }
+            });
+        }else  {
+            getSample.setVisibility(View.GONE);
+        }
+
         return currentView;
     }
 }
