@@ -58,6 +58,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         mListView = (ListView) findViewById(R.id.booksListView);
         mListView.setEmptyView(mMessageText);
+    private void clearAdapter() {
+        if(mAdapter!=null) {
+            mAdapter.clear();
+            mAdapter.setNotifyOnChange(true);
+        }
     }
 
     public void searchBooks(View v){
