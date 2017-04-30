@@ -18,9 +18,11 @@ import java.util.List;
 
 public class BookAsyncTaskLoader extends AsyncTaskLoader<List<Book>> {
     private String mSearchTerm;
+    private Context mContext;
     public BookAsyncTaskLoader(Context context, Bundle bundle) {
         super(context);
         mSearchTerm = bundle.getString("searchTerm");
+        mContext = context;
     }
 
     @Override
@@ -34,9 +36,10 @@ public class BookAsyncTaskLoader extends AsyncTaskLoader<List<Book>> {
         URL url = NetworkUtils.buildUrl(mSearchTerm);
         List<Book> list = null;
         try {
-            String json = NetworkUtils.getResponseFromHttpUrl(url);
+            String json = NetworkUtils.getResponseFromHttpUrl(url,mContext);
+
             if(json!=null && json.length()>0){
-                list = BookParser.parseBooks(json);
+                list = BookParser.parseBooks(json, mContext);
             }
 
         } catch (IOException e) {
