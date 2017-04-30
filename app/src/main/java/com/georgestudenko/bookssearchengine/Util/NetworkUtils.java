@@ -25,7 +25,7 @@ public class NetworkUtils {
     private final static String concept="volumes";
     private final static String query="q";
     private final static String maxResults="maxResults";
-    private final static String maxResultsValue="40";
+    private final static String maxResultsValue="20";
     private final static String apiKey = BuildConfig.API_KEY.length()>0 ? BuildConfig.API_KEY : "";
 
 
