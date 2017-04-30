@@ -29,7 +29,7 @@ public class NetworkUtils {
     private final static String apiKey = BuildConfig.API_KEY.length()>0 ? BuildConfig.API_KEY : "";
 
 
-    public static String getResponseFromHttpUrl(URL url) throws IOException {
+    public static String getResponseFromHttpUrl(URL url, Context context) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             InputStream in = urlConnection.getInputStream();
