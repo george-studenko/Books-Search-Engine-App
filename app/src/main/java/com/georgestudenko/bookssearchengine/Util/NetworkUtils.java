@@ -5,12 +5,17 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 
+import com.georgestudenko.bookssearchengine.BuildConfig;
+import com.georgestudenko.bookssearchengine.MainActivity;
+import com.georgestudenko.bookssearchengine.R;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
+
 
 /**
  * Created by george on 29/04/2017.
@@ -31,6 +36,54 @@ public class NetworkUtils {
 
     public static String getResponseFromHttpUrl(URL url, Context context) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        int responseCode = urlConnection.getResponseCode();
+        switch (responseCode){
+           case 200:
+           case 201:
+           case 202:
+           case 203:
+               break;
+           case 204:
+               MainActivity.setErrorMessage(context.getString(R.string.e204),true);
+               return null;
+           case 400:
+               MainActivity.setErrorMessage(context.getString(R.string.e400),true);
+               return null;
+           case 401:
+               MainActivity.setErrorMessage(context.getString(R.string.e401),true);
+               return null;
+           case 403:
+               MainActivity.setErrorMessage(context.getString(R.string.e403),true);
+               return null;
+           case 404:
+               MainActivity.setErrorMessage(context.getString(R.string.e404),true);
+               return null;
+           case 408:
+               MainActivity.setErrorMessage(context.getString(R.string.e408),true);
+               return null;
+           case 409:
+               MainActivity.setErrorMessage(context.getString(R.string.e409),true);
+               return null;
+           case 429:
+               MainActivity.setErrorMessage(context.getString(R.string.e429),true);
+               return null;
+           case 444:
+               MainActivity.setErrorMessage(context.getString(R.string.e444),true);
+               return null;
+           case 500:
+               MainActivity.setErrorMessage(context.getString(R.string.e500),true);
+               return null;
+           case 502:
+               MainActivity.setErrorMessage(context.getString(R.string.e502),true);
+               return null;
+           case 503:
+               MainActivity.setErrorMessage(context.getString(R.string.e503),true);
+               return null;
+           case 504:
+               MainActivity.setErrorMessage(context.getString(R.string.e504),true);
+               return null;
+       }
+
         try {
             InputStream in = urlConnection.getInputStream();
 
