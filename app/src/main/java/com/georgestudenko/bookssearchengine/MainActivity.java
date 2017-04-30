@@ -20,16 +20,22 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Book>>{
 
     private static final int LOADER_ID = 182;
-    EditText mSearchTerm;
-    BookAdapter mAdapter;
-    ListView mListView;
-    TextView mMessageText;
-    Button mSearch;
+    private static String errorMessage;
+    private static boolean mShowError;
+    private static TextView mMessageText;
+    private static Button mSearch;
+    private String mLastSearch;
+    private ProgressBar mProgressBar;
+    private EditText mSearchTerm;
+    private BookAdapter mAdapter;
+    private ListView mListView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mMessageText = (TextView) findViewById(R.id.messageText);
         mSearch = (Button) findViewById(R.id.searchButton);
         if(!NetworkUtils.isConnected(this)){
@@ -54,13 +60,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<List<Book>> onCreateLoader(int id, Bundle args) {
+        mMessageText.setVisibility(View.GONE);
+        mProgressBar.setVisibility(View.VISIBLE);
         return new BookAsyncTaskLoader(this,args);
     }
 
     @Override
     public void onLoadFinished(Loader<List<Book>> loader, List<Book> data) {
-        mAdapter = new BookAdapter(this,data);
-        mListView.setAdapter(mAdapter);
+        mMessageText.setVisibility(View.VISIBLE);
+        mProgressBar.setVisibility(View.GONE);
     }
 
     @Override
