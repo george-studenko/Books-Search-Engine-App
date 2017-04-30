@@ -79,6 +79,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        checkInternetConnection();
+    }
+
     public Loader<List<Book>> onCreateLoader(int id, Bundle args) {
         mMessageText.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
