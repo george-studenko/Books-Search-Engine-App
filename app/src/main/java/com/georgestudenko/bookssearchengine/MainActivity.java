@@ -69,6 +69,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             Bundle bundle = new Bundle();
             bundle.putString("searchTerm", mSearchTerm.getText().toString());
             getSupportLoaderManager().restartLoader(LOADER_ID,bundle,this);
+    public static void setErrorMessage(String errorMessageToSet, boolean showErrorOnLoadFinish) {
+        errorMessage = errorMessageToSet;
+        if(showErrorOnLoadFinish){
+            mShowError =true;
+        }else {
+            mMessageText.setText(errorMessage);
+        }
     }
 
     @Override
