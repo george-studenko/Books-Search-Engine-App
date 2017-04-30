@@ -1,99 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-    android:paddingTop="10dp">
+              style="@style/rowMainLayout">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
+        style="@style/rowImageSection">
 
         <ImageView
             android:id="@+id/bookThumbnail"
-            android:layout_width="128dp"
-            android:layout_height="156dp"/>
+            style="@style/thumbnail"/>
 
         <Button
             android:id="@+id/buyButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:padding="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="@android:color/white"
-            tools:text="BUY: 19.35 EUR"/>
+            tools:text="BUY: 19.35 EUR"
+            style="@style/buyButton"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="5dp">
+        style="@style/bookDetails">
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/colorBlack"
-            tools:text="Android Cookbook: Problems and Solutions for Android Developers"/>
+            tools:text="Android Cookbook: Problems and Solutions for Android Developers"
+            style="@style/title"/>
         <TextView
             android:id="@+id/authors"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            android:textStyle="italic"
             tools:text="Ian F. Darwin"
-            android:textSize="12sp"/>
+            style="@style/authors"/>
         <TextView
             android:id="@+id/shortDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:textColor="@color/colorSoftBlack"
-            tools:text="Ideal for developers familiar with Java, Android basics, and the Java SE API, this book features recipes contributed by more than three dozen developers from the Android community."/>
+            tools:text="Ideal for developers familiar with Java, Android basics, and the Java SE API, this book features recipes contributed by more than three dozen developers from the Android community."
+            style="@style/shortDescription"/>
 
         <TextView
             android:id="@+id/pages"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="11sp"
-            tools:text="234 pages"/>
+            tools:text="234 pages"
+            style="@style/pages"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
+            style="@style/bottomButtons">
 
             <Button
                 android:id="@+id/downloadSample"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@color/colorPrimaryDark"
-                android:padding="8dp"
                 android:text="Get Sample"
-                android:textColor="@android:color/white"/>
+                style="@style/downloadSampleButton"/>
 
             <Button
                 android:id="@+id/openDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:gravity="center"
-                android:padding="8dp"
                 android:text="Details"
-                android:textColor="@android:color/white"/>
+                style="@style/openDetailsButton"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
