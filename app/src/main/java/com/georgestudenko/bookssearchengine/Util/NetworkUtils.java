@@ -16,8 +16,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
-import static android.R.attr.apiKey;
-
 
 /**
  * Created by george on 29/04/2017.
@@ -33,6 +31,8 @@ public class NetworkUtils {
     private final static String query="q";
     private final static String maxResults="maxResults";
     private final static String maxResultsValue="20";
+    private final static String apiKey = BuildConfig.API_KEY.length()>0 ? BuildConfig.API_KEY : "";
+
 
     public static String getResponseFromHttpUrl(URL url, Context context) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -120,6 +120,11 @@ public class NetworkUtils {
                 .appendPath(concept)
                 .appendQueryParameter(query, searchTerm)
                 .appendQueryParameter(maxResults,maxResultsValue);
+
+                if(apiKey!=""){
+                    builder.appendQueryParameter("key", apiKey);
+                }
+
                 builder.build();
         try {
             URL = new URL(builder.build().toString());
